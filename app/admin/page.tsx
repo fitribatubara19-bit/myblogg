@@ -22,11 +22,10 @@ export default function AdminPage() {
   async function loadPendingPosts() {
     setLoading(true);
 
-    const { data } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("status", "pending")
-      .order("created_at", { ascending: false });
+const { data, error } = await supabase
+  .from("posts")
+  .select("*")
+  .order("created_at", { ascending: false });
 
     if (data) setPosts(data);
     setLoading(false);
